@@ -1,0 +1,9 @@
+trigger OpportunityTrigger on Opportunity (before delete) {
+    if (Trigger.isBefore && Trigger.isDelete){
+        for(Opportunity opportunity: trigger.old){
+            if(opportunity.Amount >= 20000){
+                opportunity.adderror('No puedes borrar una Oportunidad con un monto mayor a $20.000');
+            }
+        }
+    }
+}

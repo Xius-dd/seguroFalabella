@@ -1,0 +1,26 @@
+@isTest
+public class OpportunityTriggerTest {
+
+    @isTest
+    static void DeleteOpportunityEqualOrHigherThan20000(){
+        Opportunity opportunity = TestDataFactory.CreateOpportunities(1, 20000)[0];
+        Test.startTest();
+        try{
+        	Delete opportunity;
+        }catch(Exception e){
+        }
+        Test.stopTest();
+    }
+    
+    
+    @isTest
+    static void DeleteOpportunityLowerThan20000(){
+        Opportunity opportunity = TestDataFactory.CreateOpportunities(1, 500)[0];
+        Test.startTest();
+        try{
+        	Delete opportunity;
+        }catch(Exception e){
+        }
+        Test.stopTest();
+    }
+}

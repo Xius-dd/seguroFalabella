@@ -1,0 +1,33 @@
+@isTest
+public with sharing class TestDataFactory {
+
+    public static List<Account> CreateAccounts(Integer numberAccounts){
+        List<Account> accounts = new List<Account>();
+        
+        for(Integer i=0; i<numberAccounts; i++){
+            Account account = new Account(Name='Account' + i);
+            accounts.add(account);
+        }
+        insert accounts;
+        return accounts;
+    }
+    
+    public static List<Opportunity> CreateOpportunities(Integer numberOpportunities, Integer opportunitiesAmount){
+        List<Opportunity> opportunities = new List<Opportunity>();
+        Account account = new Account();
+        
+        account = CreateAccounts(1)[0];
+        for(Integer i=0; i<numberOpportunities; i++){
+            Opportunity opportunity = new Opportunity();
+            opportunity.AccountId = account.Id;
+            opportunity.Amount = opportunitiesAmount;
+            opportunity.Name = 'Opportunity' + i;
+            opportunity.StageName = 'Prospecting';
+            opportunity.CloseDate = Date.today();
+            
+            opportunities.add(opportunity);
+        }
+        insert opportunities;
+        return opportunities;
+    }
+}
